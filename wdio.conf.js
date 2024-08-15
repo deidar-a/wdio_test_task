@@ -51,9 +51,9 @@ export const config = {
     {
       browserName: "chrome",
     },
-    // {
-    //   browserName: "MicrosoftEdge",
-    // },
+    {
+      browserName: "MicrosoftEdge",
+    },
   ],
 
   //
