@@ -19,10 +19,6 @@ class LoginPage {
     return $(".error-message-container");
   }
 
-  get appLogo() {
-    return $(".app_logo");
-  }
-
   async open() {
     log.info("Opening SauceDemo");
     await browser.url("https://www.saucedemo.com");
@@ -58,12 +54,6 @@ class LoginPage {
     const errorMessage = await this.errorMessageContainer.getText();
     log.info(`Error message displayed: ${errorMessage}`);
     return errorMessage;
-  }
-
-  async getDashboardTitle() {
-    const dashboardTitle = await this.appLogo.getText();
-    log.info(`Dashboard title: ${dashboardTitle}`);
-    return dashboardTitle;
   }
 }
 

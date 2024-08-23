@@ -1,4 +1,5 @@
 import LoginPage from "../pageobject/login.page.js";
+import Dashboard from "../pageobject/dashboard.page.js";
 import {
   validUsername,
   validPassword,
@@ -32,7 +33,7 @@ describe("Login Tests", () => {
 
   it('should validate the title "Swag Labs" in the dashboard', async () => {
     await LoginPage.login(validUsername, validPassword);
-    const dashboardTitle = await LoginPage.getDashboardTitle();
+    const dashboardTitle = await Dashboard.getDashboardTitle();
     expect(dashboardTitle).toContain("Swag Labs");
   });
 });
