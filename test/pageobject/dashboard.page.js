@@ -1,6 +1,7 @@
 import logger from "@wdio/logger";
+import BasePage from "./basePage.page.js";
 const log = logger("Dashboard");
-class Dashboard {
+class Dashboard extends BasePage {
   get appLogo() {
     return $(".app_logo");
   }
@@ -10,4 +11,4 @@ class Dashboard {
     return dashboardTitle;
   }
 }
-export default new Dashboard();
+export default Dashboard;

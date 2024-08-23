@@ -6,35 +6,37 @@ import {
   invalidUsername,
   invalidPassword,
 } from "../data/credentials.js";
-import loginPage from "../pageobject/login.page.js";
+import { SauseDemoUrl } from "../data/urls.js";
 
 describe("Login Tests", () => {
+  let loginPage = new LoginPage(SauseDemoUrl);
+  let dashboard = new Dashboard(SauseDemoUrl);
   beforeEach(async () => {
-    await LoginPage.open();
+    await loginPage.open();
   });
 
   it('should throw the error message: "Username is required"', async () => {
-    await LoginPage.login(invalidUsername, invalidPassword);
-    await LoginPage.clearInput(loginPage.passwordInput);
-    await LoginPage.clearInput(loginPage.usernameInput);
-    await LoginPage.loginButton.click();
+    await loginPage.login(invalidUsername, invalidPassword);
+    await loginPage.clearInput(loginPage.passwordInput);
+    await loginPage.clearInput(loginPage.usernameInput);
+    await loginPage.loginButton.click();
 
-    const errorMes = await LoginPage.getErrorMessage();
+    const errorMes = await loginPage.getErrorMessage();
     expect(errorMes).toContain("Username is required");
   });
 
   it('should throw the error message: "Password is required"', async () => {
-    await LoginPage.login(invalidUsername, invalidPassword);
-    await LoginPage.clearInput(loginPage.passwordInput);
-    await LoginPage.loginButton.click();
+    await loginPage.login(invalidUsername, invalidPassword);
+    await loginPage.clearInput(loginPage.passwordInput);
+    await loginPage.loginButton.click();
 
-    const errorMes = await LoginPage.getErrorMessage();
+    const errorMes = await loginPage.getErrorMessage();
     expect(errorMes).toContain("Password is required");
   });
 
   it('should validate the title "Swag Labs" in the dashboard', async () => {
-    await LoginPage.login(validUsername, validPassword);
-    const dashboardTitle = await Dashboard.getDashboardTitle();
+    await loginPage.login(validUsername, validPassword);
+    const dashboardTitle = await dashboard.getDashboardTitle();
     expect(dashboardTitle).toContain("Swag Labs");
   });
 });
