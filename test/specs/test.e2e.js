@@ -6,6 +6,7 @@ import {
   invalidUsername,
   invalidPassword,
 } from "../data/credentials.js";
+import loginPage from "../pageobject/login.page.js";
 
 describe("Login Tests", () => {
   beforeEach(async () => {
@@ -14,8 +15,8 @@ describe("Login Tests", () => {
 
   it('should throw the error message: "Username is required"', async () => {
     await LoginPage.login(invalidUsername, invalidPassword);
-    await LoginPage.clearPassword();
-    await LoginPage.clearUsername();
+    await LoginPage.clearInput(loginPage.passwordInput);
+    await LoginPage.clearInput(loginPage.usernameInput);
     await LoginPage.loginButton.click();
 
     const errorMes = await LoginPage.getErrorMessage();
@@ -24,7 +25,7 @@ describe("Login Tests", () => {
 
   it('should throw the error message: "Password is required"', async () => {
     await LoginPage.login(invalidUsername, invalidPassword);
-    await LoginPage.clearPassword();
+    await LoginPage.clearInput(loginPage.passwordInput);
     await LoginPage.loginButton.click();
 
     const errorMes = await LoginPage.getErrorMessage();

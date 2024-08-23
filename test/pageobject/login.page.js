@@ -31,21 +31,12 @@ class LoginPage {
     await this.loginButton.click();
   }
 
-  async clearUsername() {
+  async clearInput(element) {
     //.clearValue() dont work for me, thats why im using this.
-    log.info("Clearing the username field");
-    await this.usernameInput.click();
-    const usernameLength = (await this.usernameInput.getValue()).length;
-    for (let i = 0; i < usernameLength; i++) {
-      await browser.keys(Key.Backspace);
-    }
-  }
-
-  async clearPassword() {
-    log.info("Clearing the password field");
-    await this.passwordInput.click();
-    const passwordLength = (await this.passwordInput.getValue()).length;
-    for (let i = 0; i < passwordLength; i++) {
+    log.info("Clearing the input field");
+    await element.click();
+    const elementlength = (await element.getValue()).length;
+    for (let i = 0; i < elementlength; i++) {
       await browser.keys(Key.Backspace);
     }
   }
