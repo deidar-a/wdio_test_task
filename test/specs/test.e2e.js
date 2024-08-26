@@ -1,8 +1,7 @@
 import LoginPage from "../pageobject/login.page.js";
 import Dashboard from "../pageobject/dashboard.page.js";
 import {
-  validUsername,
-  validPassword,
+  credentials,
   invalidUsername,
   invalidPassword,
 } from "../data/credentials.js";
@@ -33,10 +32,11 @@ describe("Login Tests", () => {
     const errorMes = await loginPage.getErrorMessage();
     expect(errorMes).toContain("Password is required");
   });
-
-  it('should validate the title "Swag Labs" in the dashboard', async () => {
-    await loginPage.login(validUsername, validPassword);
-    const dashboardTitle = await dashboard.getDashboardTitle();
-    expect(dashboardTitle).toContain("Swag Labs");
+  credentials.forEach(({ username, password }) => {
+    it('should validate the title "Swag Labs" in the dashboard', async () => {
+      await loginPage.login(username, password);
+      const dashboardTitle = await dashboard.getDashboardTitle();
+      expect(dashboardTitle).toContain("Swag Labs");
+    });
   });
 });

@@ -2,7 +2,6 @@ import { Key } from "webdriverio";
 import logger from "@wdio/logger";
 const log = logger("BasePage");
 class BasePage {
-  url;
   constructor(url) {
     this.url = url;
   }

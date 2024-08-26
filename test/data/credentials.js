@@ -1,4 +1,10 @@
-export const validUsername = "standard_user";
-export const validPassword = "secret_sauce";
+export const credentials = [
+  { username: "standard_user", password: "secret_sauce" },
+  { username: "locked_out_user", password: "secret_sauce" },
+  { username: "problem_user", password: "secret_sauce" },
+  { username: "performance_glitch_user", password: "secret_sauce" },
+  { username: "error_user", password: "secret_sauce" },
+  { username: "visual_user", password: "secret_sauce" },
+];
 export const invalidUsername = "user";
 export const invalidPassword = "password";
